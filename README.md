@@ -16,6 +16,7 @@ Antes de comenzar a utilizar esta RestAPI, asegúrate de tener instalados los si
 2.  En una consola, accede a la carpeta del repositorio clonado e instala los módulos con el comando `npm install`.
 3.  En la carpeta `db`, sigue las instrucciones que se encuentran en el archivo `readsmate-db.sql` para crear la base de datos.
 4.  Abre tu cliente HTTP y comienza a realizar consultas a la API.
+5.  Recuerda ingresar al archivo config.js dentro de la carpeta src, y modificar las variables DB_... y te conectes a tu base de datos local
 
 ## EndPoints de la API
 
