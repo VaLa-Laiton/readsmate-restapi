@@ -1,7 +1,11 @@
--- CREATE DATABASE readsmate;
+-- Crear base de datos 
+CREATE DATABASE readsmate;
 
--- USE readsmate;
+-- Ingresar a la base de datos despues de haber sido creada
+USE readsmate;
 
+-- Crea todas las tablas a continuacion, copia la estructura de cada una de las tablas, tal y como estan
+-- Si usas MySQL desde una consola, solo copia y pega el lenguaje SQL
 CREATE TABLE user (
   userId INT NOT NULL AUTO_INCREMENT,
   nickname VARCHAR(25) NOT NULL,
