@@ -1,4 +1,7 @@
 import { Router } from "express";
+import verifyToken from "../middlewares/verifyToken.js";
+import checkRoleArticles from '../middlewares/checkRoleArticles.js';
+import checkRoleArticleUpdate from '../middlewares/checkRoleArticleUpdate.js'
 import {
   getArticles,
   getArticleById,
@@ -16,12 +19,12 @@ router.get("/article", getArticles);
 router.get("/article/:articleId", getArticleById);
 
 //
-router.post("/article", createArticle);
+router.post("/article", verifyToken, createArticle);
 
 //
-router.patch("/article/:articleId", updateArticle);
+router.patch("/article/:articleId", verifyToken, checkRoleArticleUpdate, updateArticle);
 
 //
-router.delete("/article/:articleId", deleteArticle);
+router.delete("/article/:articleId", verifyToken, checkRoleArticles, deleteArticle);
 
 export default router;

@@ -5,9 +5,13 @@ import userRoutes from "./routes/user.routes.js";
 import articleRoutes from "./routes/article.routes.js";
 import commentRoutes from "./routes/comment.routes.js";
 
+import morgan from "morgan";
+
 const app = express();
 
-app.use(express.json())
+app.use(morgan("dev"));
+
+app.use(express.json());
 
 app.get("/ping", async (req, res) => {
   const [result] = await pool.query('SELECT "Pong" AS result');

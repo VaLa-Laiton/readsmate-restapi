@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+import { user_Id, isAdmin } from "../libs/isAdmin.js";
 
 export const getArticles = async (req, res) => {
   try {
@@ -29,12 +30,14 @@ export const getArticleById = async (req, res) => {
 
 export const createArticle = async (req, res) => {
   try {
-    const { userId, title, urlFile } = req.body;
+    await isAdmin(req, res);
+
+    const { title, urlFile } = req.body;
     const [rows] = await pool.query(
       "INSERT INTO article (userId, title, urlFile) VALUES (?, ?, ?)",
-      [userId, title, urlFile]
+      [user_Id, title, urlFile]
     );
-    res.status(201).json({ articleId: rows.insertId, userId, title, urlFile });
+    res.status(201).json({ articleId: rows.insertId, user_Id, title, urlFile });
   } catch (error) {
     return res.status(500).json({ message: "Algo salio mal :(" });
   }

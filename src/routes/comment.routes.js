@@ -1,4 +1,7 @@
 import { Router } from "express";
+import verifyToken from "../middlewares/verifyToken.js";
+import checkRoleComments from '../middlewares/checkRoleComments.js'
+import checkRoleCommentUpdate from '../middlewares/checkRoleCommentUpdate.js'
 import {
   getComments,
   getCommentById,
@@ -16,12 +19,12 @@ router.get("/comment", getComments);
 router.get("/comment/:commentId", getCommentById);
 
 //
-router.post("/comment", createComment);
+router.post("/comment", verifyToken, createComment);
 
 //
-router.patch("/comment/:commentId", updateComment);
+router.patch("/comment/:commentId", verifyToken, checkRoleCommentUpdate, updateComment);
 
 //
-router.delete("/comment/:commentId", deleteComment);
+router.delete("/comment/:commentId", verifyToken, checkRoleComments, deleteComment);
 
 export default router;

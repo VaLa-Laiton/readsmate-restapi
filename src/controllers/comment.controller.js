@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+import { user_Id, isAdmin } from "../libs/isAdmin.js";
 
 export const getComments = async (req, res) => {
   try {
@@ -29,14 +30,16 @@ export const getCommentById = async (req, res) => {
 
 export const createComment = async (req, res) => {
   try {
-    const { articleId, userId, content } = req.body;
+    await isAdmin(req, res);
+
+    const { articleId, content } = req.body;
     const [rows] = await pool.query(
       "INSERT INTO comment (articleId, userId, content) VALUES (?, ?, ?)",
-      [articleId, userId, content]
+      [articleId, user_Id, content]
     );
     res
       .status(201)
-      .json({ commentId: rows.insertId, articleId, userId, content });
+      .json({ commentId: rows.insertId, articleId, user_Id, content });
   } catch (error) {
     return res.status(500).json({ message: "Algo salio mal :(" });
   }
