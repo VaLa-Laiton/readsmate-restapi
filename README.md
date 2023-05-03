@@ -1,5 +1,5 @@
 # READSMATE-RestAPI
-This is a RestAPI for a personal project
+This is a RestAPI for a personal project.
 
 **- - -**
 
