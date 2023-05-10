@@ -98,7 +98,12 @@ export const updateUser = async (req, res) => {
       const hash = await bcrypt.hash(unencryptedPassword, salt);
       return hash;
     };
-    const newPassword = await encryptedPassword(password);
+    let newPassword; 
+
+    if (password) {
+      newPassword = await encryptedPassword(password);
+    }
+
     const [result] = await pool.query(
       "UPDATE user SET nickname = IFNULL(?, nickname), email = IFNULL(?, email), password = IFNULL(?, password) WHERE userId = ?",
       [nickname, email, newPassword, userId]
