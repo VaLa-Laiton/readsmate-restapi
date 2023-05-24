@@ -1,6 +1,7 @@
 import { pool } from "../db.js";
 import { user_Id, isAdmin } from "../libs/isAdmin.js";
 
+//  Consult all articles
 export const getArticles = async (req, res) => {
   try {
     const [rows] = await pool.query("SELECT * FROM article");
@@ -10,6 +11,7 @@ export const getArticles = async (req, res) => {
   }
 };
 
+// Consult a specific article
 export const getArticleById = async (req, res) => {
   try {
     const { articleId } = req.params;
@@ -28,6 +30,7 @@ export const getArticleById = async (req, res) => {
   }
 };
 
+// Create article
 export const createArticle = async (req, res) => {
   try {
     await isAdmin(req, res);
@@ -43,6 +46,7 @@ export const createArticle = async (req, res) => {
   }
 };
 
+// Update article
 export const updateArticle = async (req, res) => {
   try {
     const { articleId } = req.params;
@@ -68,6 +72,7 @@ export const updateArticle = async (req, res) => {
   }
 };
 
+// Delete article
 export const deleteArticle = async (req, res) => {
   try {
     const { articleId } = req.params;

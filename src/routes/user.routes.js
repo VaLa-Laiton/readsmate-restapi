@@ -18,7 +18,7 @@ const router = Router();
 router.get("/user", verifyToken, checkRoleAdmin, getUsers);
 
 //
-router.get("/user/:userId", verifyToken, checkRoleAdmin, getUserById);
+router.get("/user/:userId", verifyToken, checkRoleUsers, getUserById);
 
 //
 router.post("/user/log-in", logInUser);

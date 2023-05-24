@@ -11,7 +11,7 @@ const doesUserExist = async (req) => {
     email,
   ]);
 
-  if (nicknameExist[0].length >= 1 && emailExist[0].length >= 1) {
+  if (nicknameExist[0].length >= 1 || emailExist[0].length >= 1) {
     return true;
   } else {
     return false;

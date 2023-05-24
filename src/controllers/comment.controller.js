@@ -1,6 +1,7 @@
 import { pool } from "../db.js";
 import { user_Id, isAdmin } from "../libs/isAdmin.js";
 
+//  Consult all comments
 export const getComments = async (req, res) => {
   try {
     const [rows] = await pool.query("SELECT * FROM comment");
@@ -10,6 +11,7 @@ export const getComments = async (req, res) => {
   }
 };
 
+// Consult a specific comment
 export const getCommentById = async (req, res) => {
   try {
     const { commentId } = req.params;
@@ -28,6 +30,7 @@ export const getCommentById = async (req, res) => {
   }
 };
 
+// Create comment
 export const createComment = async (req, res) => {
   try {
     await isAdmin(req, res);
@@ -45,6 +48,7 @@ export const createComment = async (req, res) => {
   }
 };
 
+// Update comment
 export const updateComment = async (req, res) => {
   try {
     const { commentId } = req.params;
@@ -70,6 +74,7 @@ export const updateComment = async (req, res) => {
   }
 };
 
+// Delete comment
 export const deleteComment = async (req, res) => {
   try {
     const { commentId } = req.params;

@@ -51,7 +51,7 @@ export const logInUser = async (req, res) => {
     if (checkPassword) {
       const payload = { userId: rows[0].userId, email };
       const token = jwt.sign({ payload }, SECRET, { expiresIn: "24h" });
-      return res.status(202).json({ nickname: rows[0].nickname, token });
+      return res.status(202).json({ userId: rows[0].userId, nickname: rows[0].nickname, email, token });
     }
 
     res.status(401).json({ message: "Constraseña incorrecta" });
@@ -79,8 +79,8 @@ export const createUser = async (req, res) => {
       [nickname, email, newPassword, role]
     );
     const payload = { userId: rows.insertId, email };
-    const token = jwt.sign({ payload }, SECRET, { expiresIn: "24h" });
-    res.status(201).json({ token });
+    const token = jwt.sign({ payload }, SECRET, { expiresIn: "72h" });
+    res.status(201).json({ userId: rows.insertId, nickname, email, token });
   } catch (error) {
     return res.status(500).json({ message: "Algo salio mal :(" });
   }

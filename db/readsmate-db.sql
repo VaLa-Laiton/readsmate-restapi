@@ -19,9 +19,9 @@ CREATE TABLE article (
   articleId INT NOT NULL AUTO_INCREMENT,
   userId INT NOT NULL,
   title VARCHAR(150) NOT NULL,
-  urlFile VARCHAR(150) NOT NULL,
+  urlFile VARCHAR(255) NOT NULL,
   PRIMARY KEY (articleId),
-  FOREIGN KEY (userId) REFERENCES user(userId)
+  FOREIGN KEY (userId) REFERENCES user(userId) ON DELETE CASCADE
 );
 
 CREATE TABLE comment (
@@ -30,8 +30,8 @@ CREATE TABLE comment (
   userId INT NOT NULL,
   content TEXT NOT NULL,
   PRIMARY KEY (commentId),
-  FOREIGN KEY (articleId) REFERENCES article(articleId),
-  FOREIGN KEY (userId) REFERENCES user(userId)
+  FOREIGN KEY (articleId) REFERENCES article(articleId) ON DELETE CASCADE,
+  FOREIGN KEY (userId) REFERENCES user(userId) ON DELETE CASCADE
 );
 
 /*
