@@ -10,7 +10,7 @@ import morgan from "morgan";
 
 const app = express();
 
-app.use(cors({ origin: ["https://readsmate.netlify.app"] }));
+app.use(cors());
 
 app.use(morgan("dev"));
 
